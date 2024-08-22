@@ -50,13 +50,48 @@ function addBookToLibrary(title, author, pages, status) {
   displayBook();
 }
 
+function getRandomBeigeColor() {
+  // Generate random R, G, B values in the beige range
+  const r = Math.floor(210 + Math.random() * 46); // 210-255
+  const g = Math.floor(180 + Math.random() * 51); // 180-230
+  const b = Math.floor(140 + Math.random() * 81); // 140-220
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 function displayBook() {
-  bookContainer.innerHTML = "";
+  const div = document.createElement("div");
+  div.className = "book";
+  div.style.backgroundColor = getRandomBeigeColor();
+  // bookContainer.innerHTML = "";
   for (const [index, book] of myLibrary.entries()) {
     const { title, author, pages, read } = book;
-    bookContainer.innerHTML += `<div class="book">
-                                    <p class="title">${title}</h2>
-                                    <p class="author">${author}</h3
-                                    </div>`;
+    div.innerHTML = ` <p class="title">${title}</p>
+                                    <p class="author">${author}</p
+                                    `;
   }
+  bookContainer.appendChild(div);
 }
+
+addBookToLibrary(
+  "Harry Potter and the Sorcerer's Stone.",
+  "JK Rowling",
+  "2323"
+);
+addBookToLibrary(
+  "Harry Potter and the Chamber of Secrets",
+  "JK Rowling",
+  "2323"
+);
+addBookToLibrary("Harry Potter and the Goblet of Fire.", "JK Rowling", "2323");
+addBookToLibrary(
+  "Harry Potter and the Order of the Phoenix.",
+  "JK Rowling",
+  "2323"
+);
+addBookToLibrary(
+  "Harry Potter and the Half-Blood Prince.",
+  "JK Rowling",
+  "2323"
+);
+addBookToLibrary("Harry Potter and the Deathly Hallows.", "JK Rowling", "2323");
