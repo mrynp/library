@@ -37,9 +37,9 @@ bookForm.addEventListener("submit", (e) => {
   let status;
 
   if (formDataObj.status === "on") {
-    status = "read";
+    status = true;
   } else {
-    status = "notRead";
+    status = false;
   }
 
   addBookToLibrary(title, author, pages, status);
@@ -63,12 +63,13 @@ function displayBook() {
   const div = document.createElement("div");
   div.className = "book";
   div.style.backgroundColor = getRandomBeigeColor();
-  // bookContainer.innerHTML = "";
   for (const [index, book] of myLibrary.entries()) {
-    const { title, author, pages, read } = book;
+    const { title, author, pages, status } = book;
     div.innerHTML = ` <p class="title">${title}</p>
-                                    <p class="author">${author}</p
-                                    `;
+                      <p class="author">${author}</p>
+                      <img src="./assets/check.png
+                      " style="opacity:${status ? 1 : 0} "/>
+                       `;
   }
   bookContainer.appendChild(div);
 }
@@ -76,7 +77,8 @@ function displayBook() {
 addBookToLibrary(
   "Harry Potter and the Sorcerer's Stone.",
   "JK Rowling",
-  "2323"
+  "2323",
+  true
 );
 addBookToLibrary(
   "Harry Potter and the Chamber of Secrets",
@@ -87,7 +89,8 @@ addBookToLibrary("Harry Potter and the Goblet of Fire.", "JK Rowling", "2323");
 addBookToLibrary(
   "Harry Potter and the Order of the Phoenix.",
   "JK Rowling",
-  "2323"
+  "2323",
+  true
 );
 addBookToLibrary(
   "Harry Potter and the Half-Blood Prince.",

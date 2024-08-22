@@ -29,7 +29,7 @@
   padding: 40px 80px;
   background-color: var(--dk-beige);
   box-shadow: rgba(17, 17, 26, 0.1) 2px 2px 4px;
-  z-index: 1;
+  z-index: 2;
 }
 
 @media only screen and (max-width: 600px) {
@@ -228,12 +228,12 @@ input::-webkit-inner-spin-button {
 
 main {
   background-color: var(--beige);
-  padding: 180px 80px 20px 80px;
+  padding: 180px 80px 40px 80px;
   display: flex;
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  z-index: -1;
+  z-index: -100;
 }
 
 .book-container {
@@ -243,10 +243,10 @@ main {
 }
 
 .book {
-  background-color: var(--lt-brown);
+  background-color: rgb(255, 225, 224);
   height: 260px;
   width: 200px;
-  padding: 20px 15px;
+  padding: 40px 15px 20px 15px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -254,8 +254,8 @@ main {
   text-align: center;
   margin: 30px;
   position: relative;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(0, 0, 0, 0.24) 10px 10px 8px;
+  z-index: 1;
 }
 
 .book p.title {
@@ -295,4 +295,25 @@ main {
   right: 0;
   transform: translatex(100%) skewy(45deg);
   top: 4px;
+}
+
+.is-read {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background-color: #88ac99;
+  border-radius: 90px;
+  top: 10px;
+  right: 10px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  color: white;
+}
+
+.book img {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  top: 8px;
+  right: 8px;
 }
