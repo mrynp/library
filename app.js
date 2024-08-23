@@ -27,9 +27,7 @@ function Book(title, author, pages, status, id) {
 }
 
 function capitalizeFirstLetter(string) {
-  return string
-    .toLowerCase() // Convert the entire string to lowercase
-    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize the first letter of each word
+  return string.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 bookForm.addEventListener("submit", (e) => {
@@ -58,7 +56,6 @@ function addBookToLibrary(title, author, pages, status, id) {
 }
 
 function getRandomBeigeColor() {
-  // Generate random R, G, B values in the beige range
   const r = Math.floor(210 + Math.random() * 46); // 210-255
   const g = Math.floor(180 + Math.random() * 51); // 180-230
   const b = Math.floor(140 + Math.random() * 81); // 140-220
@@ -76,7 +73,9 @@ function displayBook() {
     div.innerHTML = ` 
       <p class="title">${book.title}</p>
       <p class="author">${book.author}</p>
-      <img src="./assets/check.png" style="opacity:${book.status ? 1 : 0}" />
+      <img class="status-icon" src="./assets/check.png" style="opacity:${
+        book.status ? 1 : 0
+      }" />
     `;
 
     const deleteBtn = document.createElement("div");
@@ -84,9 +83,15 @@ function displayBook() {
     deleteBtn.className = "delete";
     deleteBtn.style.opacity = 0;
 
+    const statusIcon = div.querySelector(".status-icon");
+    statusIcon.addEventListener("click", () => {
+      book.status = !book.status;
+      statusIcon.style.opacity = book.status ? 1 : 0;
+    });
+
     deleteBtn.addEventListener("click", () => {
       deleteBook(book.id);
-      div.remove(); // Remove the book's DOM element
+      div.remove();
     });
 
     div.appendChild(deleteBtn);
@@ -105,7 +110,7 @@ function deleteBook(id) {
   // Find the index of the book with the matching id
   const bookIndex = myLibrary.findIndex((book) => book.id === id);
   if (bookIndex !== -1) {
-    myLibrary.splice(bookIndex, 1); // Remove the book from myLibrary
+    myLibrary.splice(bookIndex, 1);
   }
 }
 

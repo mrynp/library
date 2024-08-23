@@ -300,25 +300,13 @@ main {
   top: 4px;
 }
 
-.is-read {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  background-color: #88ac99;
-  border-radius: 90px;
-  top: 10px;
-  right: 10px;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
-    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-  color: white;
-}
-
 .book img {
   position: absolute;
   width: 35px;
   height: 35px;
   top: 8px;
   right: 8px;
+  cursor: pointer;
 }
 
 .delete {
