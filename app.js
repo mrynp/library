@@ -48,6 +48,8 @@ bookForm.addEventListener("submit", (e) => {
   }
 
   addBookToLibrary(title, author, pages, status, id);
+
+  bookForm.reset();
 });
 
 function addBookToLibrary(title, author, pages, status, id) {
