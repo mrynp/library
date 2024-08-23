@@ -18,7 +18,7 @@ closeBtn.addEventListener("click", () => {
 const book = document.querySelector(".book");
 const myLibrary = [];
 
-function Book(title, author, pages, status) {
+function Book(title, author, pages, status, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -34,6 +34,7 @@ bookForm.addEventListener("submit", (e) => {
   let title = formDataObj.title;
   let author = formDataObj.author;
   let pages = formDataObj.pages;
+  let id = formDataObj.id;
   let status;
 
   if (formDataObj.status === "on") {
@@ -42,11 +43,11 @@ bookForm.addEventListener("submit", (e) => {
     status = false;
   }
 
-  addBookToLibrary(title, author, pages, status);
+  addBookToLibrary(title, author, pages, status, id);
 });
 
-function addBookToLibrary(title, author, pages, status) {
-  myLibrary.push(new Book(title, author, pages, status));
+function addBookToLibrary(title, author, pages, status, id) {
+  myLibrary.push(new Book(title, author, pages, status, id));
   displayBook();
 }
 
@@ -60,41 +61,47 @@ function getRandomBeigeColor() {
 }
 
 function displayBook() {
-  const div = document.createElement("div");
-  div.className = "book";
-  div.style.backgroundColor = getRandomBeigeColor();
-  for (const [index, book] of myLibrary.entries()) {
-    const { title, author, pages, status } = book;
-    div.innerHTML = ` <p class="title">${title}</p>
-                      <p class="author">${author}</p>
-                      <img src="./assets/check.png
-                      " style="opacity:${status ? 1 : 0} "/>
-                       `;
-  }
-  bookContainer.appendChild(div);
+  bookContainer.innerHTML = "";
+
+  myLibrary.forEach((book, index) => {
+    const div = document.createElement("div");
+    div.className = "book";
+    div.style.backgroundColor = getRandomBeigeColor();
+    div.innerHTML = ` 
+      <p class="title">${book.title}</p>
+      <p class="author">${book.author}</p>
+      <img src="./assets/check.png" style="opacity:${book.status ? 1 : 0}" />
+    `;
+
+    const deleteBtn = document.createElement("div");
+    deleteBtn.innerHTML = "delete";
+    deleteBtn.className = "delete";
+    deleteBtn.style.opacity = 0;
+
+    deleteBtn.addEventListener("click", () => {
+      deleteBook(book.id);
+      div.remove(); // Remove the book's DOM element
+    });
+
+    div.appendChild(deleteBtn);
+    bookContainer.appendChild(div);
+
+    div.addEventListener("mouseover", function () {
+      deleteBtn.style.opacity = 1;
+    });
+    div.addEventListener("mouseleave", function () {
+      deleteBtn.style.opacity = 0;
+    });
+  });
 }
 
-addBookToLibrary(
-  "Harry Potter and the Sorcerer's Stone.",
-  "JK Rowling",
-  "2323",
-  true
-);
-addBookToLibrary(
-  "Harry Potter and the Chamber of Secrets",
-  "JK Rowling",
-  "2323"
-);
-addBookToLibrary("Harry Potter and the Goblet of Fire.", "JK Rowling", "2323");
-addBookToLibrary(
-  "Harry Potter and the Order of the Phoenix.",
-  "JK Rowling",
-  "2323",
-  true
-);
-addBookToLibrary(
-  "Harry Potter and the Half-Blood Prince.",
-  "JK Rowling",
-  "2323"
-);
-addBookToLibrary("Harry Potter and the Deathly Hallows.", "JK Rowling", "2323");
+function deleteBook(id) {
+  // Find the index of the book with the matching id
+  const bookIndex = myLibrary.findIndex((book) => book.id === id);
+  if (bookIndex !== -1) {
+    myLibrary.splice(bookIndex, 1); // Remove the book from myLibrary
+  }
+}
+
+addBookToLibrary("When Breath Becomes Air", "Paul Kalanithi", 208, true);
+addBookToLibrary("The Count of Monte Cristo", "Alexandre Dumas", 1276, false);

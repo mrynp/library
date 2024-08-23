@@ -234,6 +234,7 @@ main {
   width: 100%;
   margin: 0 auto;
   z-index: -100;
+  min-height: 100vh;
 }
 
 .book-container {
@@ -261,11 +262,13 @@ main {
 .book p.title {
   font-size: 20px;
   color: var(--brown);
+  text-transform: capitalize;
 }
 
 .book .author {
   font-size: 16px;
   color: var(--brown);
+  text-transform: capitalize;
 }
 
 .book .pages {
@@ -316,4 +319,17 @@ main {
   height: 35px;
   top: 8px;
   right: 8px;
+}
+
+.delete {
+  position: absolute;
+  top: -30px;
+  right: 0px;
+  font-size: 12px;
+  background-color: var(--dk-beige);
+  padding: 2px 4px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px 0px;
+  color: var(--brown);
+  cursor: pointer;
 }
