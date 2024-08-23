@@ -26,13 +26,19 @@ function Book(title, author, pages, status, id) {
   this.id = Math.floor(Math.random() * 1000000);
 }
 
+function capitalizeFirstLetter(string) {
+  return string
+    .toLowerCase() // Convert the entire string to lowercase
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize the first letter of each word
+}
+
 bookForm.addEventListener("submit", (e) => {
   e.preventDefault;
   const formData = new FormData(e.target);
   const formDataObj = Object.fromEntries(formData);
 
-  let title = formDataObj.title;
-  let author = formDataObj.author;
+  let title = capitalizeFirstLetter(formDataObj.title);
+  let author = capitalizeFirstLetter(formDataObj.author);
   let pages = formDataObj.pages;
   let id = formDataObj.id;
   let status;
@@ -104,4 +110,4 @@ function deleteBook(id) {
 }
 
 addBookToLibrary("When Breath Becomes Air", "Paul Kalanithi", 208, true);
-addBookToLibrary("The Count of Monte Cristo", "Alexandre Dumas", 1276, false);
+addBookToLibrary("The Count of Monte Cristo", "Alexandre Dumas", 1276, true);
